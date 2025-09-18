@@ -1,0 +1,23 @@
+# TODO 
+# - runme.c depends on library.c
+# - runme_too.c depend on library.c and fun.c
+
+all: runme runme_too
+
+runme: runme.o library.o
+	gcc runme.o library.o -o runme
+	
+runme_too: runme_too.o library.o fun.o
+	gcc runme_too.o library.o fun.o -o runme_too
+
+runme.o: runme.c 
+	gcc -c runme.c -o runme.o
+
+library.o: library.c library.h
+	gcc -c library.c -o library.o
+
+fun.o: fun.c fun.h
+	gcc -c fun.c -o fun.o
+
+clean:
+	rm -f runme runme_too runme.o runme_too.o library.o fun.o
